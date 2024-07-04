@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DoorService {
 
-    public Door findDoor(String id);
+    public Door findDoor(Integer id);
 
     public List<Door> findAllDoors();
 }

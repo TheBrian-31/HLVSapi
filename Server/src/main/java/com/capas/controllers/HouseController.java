@@ -1,45 +1,63 @@
 package com.capas.controllers;
 
+import com.capas.models.dtos.AssingUserToHouseDTO;
+import com.capas.models.dtos.EditHouseDTO;
+import com.capas.models.dtos.GeneralResponse;
+import com.capas.models.dtos.SaveHouseDTO;
+import com.capas.models.entities.Rol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.capas.models.entities.House;
 import com.capas.service.HouseService;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/house")
 public class HouseController {
 
+
+
 	@Autowired
 	private HouseService houseService;
 	
 	@PostMapping("/save")
-	private ResponseEntity<?> save(){
-		
-		//TODO: Implement save Logic
-		houseService.saveHouse();
+	private ResponseEntity<?> save(@RequestBody SaveHouseDTO saveHouseDTO){
+
+		houseService.saveHouse(saveHouseDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
+
+	@DeleteMapping("/delete")
+	private ResponseEntity<?> delete(@RequestParam(name = "houseId") UUID houseId){
+
+		houseService.deleteHouse(houseId);
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@PatchMapping("/edit")
+	private ResponseEntity<?> edit(@RequestBody EditHouseDTO editHouseDTO){
+
+		houseService.editHouse(editHouseDTO);
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 	
 	@GetMapping("/")
-	private ResponseEntity<?> findOne(){
+	private ResponseEntity<?> findOne(@RequestParam(name = "houseId") UUID houseId){
+
 		
-		//TODO: Implement the method with credentials
-		
-		House house = houseService.findHouse(null);
+		House house = houseService.findHouse(houseId);
 		
 		return new ResponseEntity<>(house, HttpStatus.OK);
 		
 	}
-<<<<<<< HEAD
-=======
 
 	@GetMapping("/all")
 	private ResponseEntity<?> findAll(){
@@ -68,6 +86,5 @@ public class HouseController {
 			return GeneralResponse.getResponse(HttpStatus.CONFLICT, e.getMessage());
 		}
 	}
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 	
 }

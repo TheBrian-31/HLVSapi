@@ -1,7 +1,17 @@
 package com.capas.service.implementations;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
+import com.capas.models.dtos.EditUserDTO;
+import com.capas.models.entities.House;
+import com.capas.models.entities.Rol;
+import com.capas.repositories.RolRepository;
+import com.capas.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.capas.models.entities.User;
@@ -10,22 +20,37 @@ import com.capas.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private RolRepository rolRepository;
+
 	@Override
-	public User save(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public void save(String email) {
+		
+		User aux = userRepository.findByNameOrEmail(email, email).orElse(null);
+		
+		if (aux==null) {
+			User user = new User();
+			//TODO: recrear el usuarios
+					//(null, email, null);
+			
+			userRepository.save(user);
+		}else {
+			throw new RuntimeException("Usuario ya existente");
+		}
+				
 	}
 
 	@Override
-	public User findUserByIdentifier(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findUserByIdentifier(String identifier) {
+		return userRepository.findByDuiOrEmail(identifier, identifier);
 	}
 
 	@Override
 	public void deleteUser(User user) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -36,12 +61,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
+		return userRepository.findAll();
+	}
+
+	@Override
+	public List<House> getAllHousesByUser(UUID Id) {
 		return null;
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public void assignRoleToUser(User user, String roleId) {
 		//User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
@@ -119,5 +146,4 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 }

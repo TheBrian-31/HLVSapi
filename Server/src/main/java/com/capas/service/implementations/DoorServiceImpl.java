@@ -2,6 +2,8 @@ package com.capas.service.implementations;
 
 import java.util.List;
 
+import com.capas.repositories.DoorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capas.models.entities.Door;
@@ -10,16 +12,17 @@ import com.capas.service.DoorService;
 @Service
 public class DoorServiceImpl implements DoorService {
 
+	@Autowired
+	private DoorRepository doorRepository;
+
 	@Override
-	public Door findDoor(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Door findDoor(Integer id) {
+		return doorRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public List<Door> findAllDoors() {
-		// TODO Auto-generated method stub
-		return null;
+		return doorRepository.findAll();
 	}
 
 }

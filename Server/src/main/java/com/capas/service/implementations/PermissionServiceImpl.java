@@ -1,16 +1,18 @@
 package com.capas.service.implementations;
 
-<<<<<<< HEAD
-import java.util.List;
-=======
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 
+import com.capas.models.dtos.EditPermissionDTO;
+import com.capas.models.dtos.SavePermissionDTO;
+import com.capas.models.entities.Rol;
+import com.capas.models.entities.User;
+import com.capas.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capas.models.entities.House;
@@ -18,14 +20,9 @@ import com.capas.models.entities.Permission;
 import com.capas.service.PermissionService;
 import com.capas.service.UserService;
 
+
 @Service
 public class PermissionServiceImpl implements PermissionService{
-<<<<<<< HEAD
-
-	@Override
-	public void savePermission() {
-		// TODO Auto-generated method stub
-=======
 	@Autowired
 	private PermissionRepository permissionRepository;
 
@@ -144,32 +141,19 @@ public class PermissionServiceImpl implements PermissionService{
 		} else {
 			throw new RuntimeException("Permiso no encontrado");
 		}
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 		
 	}
 
 	@Override
-	public void editPermission() {
-		// TODO Auto-generated method stub
-		
-	}
+	public Permission findPermission(UUID id) {
 
-	@Override
-	public void deletePermission() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Permission findPermission(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return permissionRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public List<Permission> findAllPermissions() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return permissionRepository.findAll();
 	}
 
 }

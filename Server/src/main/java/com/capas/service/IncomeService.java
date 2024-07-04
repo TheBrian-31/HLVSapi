@@ -3,10 +3,11 @@ package com.capas.service;
 import com.capas.models.entities.Income;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IncomeService {
 
-    public Income findIncome(String id);
+    public Income findIncome(UUID id);
 
     public List<Income> findAllIncomes();
 

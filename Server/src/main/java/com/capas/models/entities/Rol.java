@@ -4,11 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,11 +17,11 @@ import lombok.NoArgsConstructor;
 public class Rol {
 
 	@Id
-	private Integer id;
+	private String id;
 	
 	private String rol;
-	
-	@OneToMany(mappedBy = "rol", fetch = FetchType.LAZY)
+
 	@JsonIgnore
-	private List<Userxrol> userxrols;
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	private List<User> users;
 }

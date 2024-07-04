@@ -30,17 +30,8 @@ public class Permission {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	
+
 	private Date date_time_application;
-<<<<<<< HEAD
-	
-	private Date date_time_start;
-	
-	private Date date_time_end;
-	
-	private Time days_week;
-	
-=======
 
 //	private Date date_time_start;
 //
@@ -58,28 +49,25 @@ public class Permission {
 	//Entrada solo ciertos dias
 	private List<String>  days_week;
 
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 	@OneToMany(mappedBy = "permission", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Tokenxpermission> tokenxpermissions;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "state_id", nullable = true)
 	private State state;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "house_id", nullable = true)
 	private House house;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_petition_id", nullable = true)
 	private User user_petition;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_permitted_id", nullable = true)
 	private User user_permitted;
-<<<<<<< HEAD
-=======
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "visitor_id", nullable = true)
@@ -126,6 +114,5 @@ public class Permission {
 	}
 	
 	
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 	
 }

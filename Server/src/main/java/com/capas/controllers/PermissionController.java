@@ -1,14 +1,14 @@
 package com.capas.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.capas.models.dtos.EditPermissionDTO;
+import com.capas.models.dtos.SavePermissionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.capas.models.entities.Permission;
 import com.capas.service.PermissionService;
@@ -41,24 +41,15 @@ public class PermissionController {
 	}
 	
 	@PostMapping("/save")
-	private ResponseEntity<?> save(){
+	private ResponseEntity<?> save(@RequestBody SavePermissionDTO savePermissionDTO){
 		
-<<<<<<< HEAD
-		//TODO: Implement the method
-		
-		permissionService.savePermission();
-=======
 		//Change the method to define what type of entry is has been solicituded
 		
 		permissionService.savePermission(savePermissionDTO);
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
-<<<<<<< HEAD
-	
-=======
 
 	@PatchMapping("/edit")
 	private ResponseEntity<?> edit(@RequestBody EditPermissionDTO editPermissionDTO){
@@ -79,6 +70,5 @@ public class PermissionController {
 		return new ResponseEntity<>(HttpStatus.OK);
 
 	}
->>>>>>> 5e83cf71db9efeda9f933091b4f919be4722c460
 	
 }

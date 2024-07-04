@@ -1,5 +1,10 @@
 package com.capas.repositories;
 
-public interface DoorRepository {
+import com.capas.models.entities.Door;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface DoorRepository extends JpaRepository<Door, Integer> {
 
 }

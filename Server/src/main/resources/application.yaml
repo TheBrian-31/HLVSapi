@@ -1,0 +1,33 @@
+jwt:
+  secret: ${JWT_SECRET}
+  exptime: ${JWT_EXPTIME}
+
+spring:
+  sql:
+    init:
+      mode: always
+  application:
+    name: Backend_ProyectoCapas
+  mustache:
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: openid,profile,email
+googleClientId: ${GOOGLE_CLIENT_ID}
